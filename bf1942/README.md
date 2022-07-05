@@ -12,6 +12,6 @@ Battlefield 1942 Server requires a 3 port
 
 | Port    | default ||
 |---------|---------|---------|
-| Remote Manager    | 14667   |defualt|
+| Remote Manager    | 14667   |primary|
 | Game    | 14567   ||
 | Query    | 23000   ||
