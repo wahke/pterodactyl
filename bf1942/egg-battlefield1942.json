@@ -1,0 +1,31 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2022-07-05T19:27:56+02:00",
+    "name": "Battlefield 1942",
+    "author": "info@rebelsofgaming.net",
+    "description": "Battlefield 1942, kurz BF1942 oder BF42, ist ein Computerspiel von Digital Illusions CE (DICE) und geh\u00f6rt zum Ego- bzw. Taktik-Shooter-Genre. Es ist der erste Teil der Battlefield-Reihe und spielt in der Zeit des Zweiten Weltkrieges.\r\n\r\nVersion 0.0.1\r\n\r\nBattlefield 1942 Remote Manage : https:\/\/fastdl.it\/Battlefield%201942\/BFRemoteManager201.zip",
+    "features": null,
+    "docker_images": {
+        "wahke\/pterodactyl:bf1942": "wahke\/pterodactyl:bf1942"
+    },
+    "file_denylist": [],
+    "startup": ".\/bfsmd -port {{SERVER_PORT}}",
+    "config": {
+        "files": "{\r\n    \"\/mods\/bf1942\/settings\/servermanager.con\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"game.serverIP\": \"game.serverIP 0.0.0.0\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"Listening on\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n\r\napt-get update\r\napt-get -y install wget curl zip unzip\r\n\r\ncd \/mnt\/server\/\r\n\r\necho \"Downloading Serverfiles Battlefield 1942\"\r\nwget https:\/\/fastdl.it\/pterodactyl\/bf1942\/bf1942.zip\r\n\r\necho \"Unpacking Serverfiles Battlefield 1942\"\r\nunzip bf1942.zip\r\nrm bf1942.zip\r\nchmod 755 bf1942_lnxded\r\n\r\necho \"Downloading Serverfiles Battlefield 1942 Server Manager\"\r\nwget https:\/\/fastdl.it\/pterodactyl\/bf1942\/BFServerManager201.zip\r\n\r\necho \"Unpacking Serverfiles Battlefield 1942 Manager\"\r\nunzip BFServerManager201.zip\r\n\r\nrm BFServerManager201.zip\r\n\r\nchmod 755 bfsmd\r\n\r\n#mv useraccess.con \/mods\/bf1942\/settings\/",
+            "container": "debian:stable-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": []
+}
