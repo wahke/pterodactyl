@@ -20,22 +20,18 @@
 # SOFTWARE.
 #
 
-FROM        penjdk:9-jre
+FROM        openjdk:8-slim-buster
 
 LABEL       author="wahke" maintainer="info@rebelsofgaming.net"
 
 LABEL       org.opencontainers.image.source="https://github.com/wahke/pterodactyl/"
 LABEL       org.opencontainers.image.licenses=MIT
 
-ENV         DEBIAN_FRONTEND=noninteractive
 
-## Update + add architecture
 
-RUN         dpkg --add-architecture i386 \
-				&& apt-get update \
-				&& apt-get upgrade -y \    
-				&& apt-get install -y lsof curl ca-certificates openssl git tar sqlite3 fontconfig libfreetype6 tzdata iproute2 libstdc++6 \
-				&& useradd -m -d /home/container container
+RUN         apt update -y \
+						&& apt install -y curl ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6 libdbus-glib-1-2 libgtk-3-0 \
+						&& useradd -d /home/container -m container
 
 USER        container
 ENV         USER=container HOME=/home/container
