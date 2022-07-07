@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM        openjdk:9-jre
+FROM        penjdk:9-jre
 
 LABEL       author="wahke" maintainer="info@rebelsofgaming.net"
 
