@@ -1,0 +1,31 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2022-07-05T19:27:56+02:00",
+    "name": "TS3 Musicbot",
+    "author": "info@rebelsofgaming.net",
+    "description": "Musik für deinen TeamSpeak & Discord Server! Höre Musik zusammen mit deinen Freunden auf TeamSpeak und Discord. Wiedergabe von Youtube, Soundcloud, Mixcloud, Twitch und vielen anderen Seiten. Streame deinen Browser oder Soundkarten Sound von Zuhause oder nutze den eingebauten serverseitigen Webbrowser um jeglichen content abzuspielen! Hole dir noch heute deinen eigenen TS3MusicBot für Windows und Linux!",
+    "features": null,
+    "docker_images": {
+        "wahke\/pterodactyl:bfv": "wahke\/pterodactyl:bfv"
+    },
+    "file_denylist": [],
+    "startup": ".\/bvdmd -port {{SERVER_PORT}}",
+    "config": {
+        "files": "{\r\n    \"\/mods\/bf1942\/settings\/servermanager.con\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"game.serverIP\": \"game.serverIP 0.0.0.0\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"Listening on\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n\r\napt-get update\r\napt-get -y install wget curl zip unzip\r\n\r\ncd \/mnt\/server\/\r\n\r\necho \"Downloading Serverfiles Battlefield 1942\"\r\nwget https:\/\/fastdl.it\/pterodactyl\/bf1942\/bf1942.zip\r\n\r\necho \"Unpacking Serverfiles Battlefield 1942\"\r\nunzip bf1942.zip\r\nrm bf1942.zip\r\nchmod 755 bf1942_lnxded\r\n\r\necho \"Downloading Serverfiles Battlefield 1942 Server Manager\"\r\nwget https:\/\/fastdl.it\/pterodactyl\/bf1942\/BFServerManager201.zip\r\n\r\necho \"Unpacking Serverfiles Battlefield 1942 Manager\"\r\nunzip BFServerManager201.zip\r\n\r\nrm BFServerManager201.zip\r\n\r\nchmod 755 bfsmd\r\n\r\n#mv useraccess.con \/mods\/bf1942\/settings\/",
+            "container": "debian:stable-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": []
+}
